@@ -1,6 +1,8 @@
 ---
 title: "PA1_template"
-output: html_document
+output: 
+  html_document: 
+    keep_md: yes
 ---
 
 ##Introduction
@@ -39,7 +41,7 @@ Show any code that is needed to
 
 Load the data (i.e. read.csv())
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 setwd("C:/Users/CLeibold/Desktop/R Files")
 rm(list=ls())
 activity <- read.csv("./activity.csv",colClasses = c("numeric", "character","integer"))

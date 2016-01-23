@@ -1,7 +1,4 @@
----
-title: "PA1_template"
-output: html_document
----
+# PA1_template
 
 ##Introduction
 It is now possible to collect a large amount of data about personal movement using activity monitoring devices such as a Fitbit, Nike Fuelband, or Jawbone Up. These type of devices are part of the "quantified self" movement - a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. But these data remain under-utilized both because the raw data are hard to obtain and there is a lack of statistical methods and software for processing and interpreting the data.
@@ -40,6 +37,11 @@ Show any code that is needed to
 Load the data (i.e. read.csv())
 
 
+```r
+setwd("C:/Users/CLeibold/Desktop/R Files")
+rm(list=ls())
+activity <- read.csv("./activity.csv",colClasses = c("numeric", "character","integer"))
+```
 
 Process/transform the data (if necessary) into a format suitable for your analysis
 
@@ -115,9 +117,64 @@ str(activity)
 
 ```r
 library(plyr)
+```
+
+```
+## Warning: package 'plyr' was built under R version 3.2.3
+```
+
+```r
 library(dplyr)
+```
+
+```
+## Warning: package 'dplyr' was built under R version 3.2.3
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+## 
+## The following objects are masked from 'package:plyr':
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize
+## 
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## 
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+```r
 library(lubridate)
+```
+
+```
+## Warning: package 'lubridate' was built under R version 3.2.3
+```
+
+```
+## 
+## Attaching package: 'lubridate'
+## 
+## The following object is masked from 'package:plyr':
+## 
+##     here
+```
+
+```r
 library(ggplot2)
+```
+
+```
+## Warning: package 'ggplot2' was built under R version 3.2.3
+```
+
+```r
 total.steps <- tapply(activity$steps, activity$date, FUN = sum, na.rm = TRUE)
 activity$date <- ymd(activity$date)
 ```
@@ -179,7 +236,7 @@ Make a histogram of the total number of steps taken each day
 ggplot(steps, aes(x=date, y=steps))+geom_bar(stat="identity")+ xlab("Dates")+ ylab("Steps")+ labs(title= "Total Number of Steps Per Day")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
 
 ##Part Two
 
@@ -219,7 +276,7 @@ Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and 
 plot(daily, type = "l")
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
 Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
@@ -300,7 +357,7 @@ new.steps <- new %>%
 ggplot(new.steps, aes(x=date, y=steps))+geom_bar(stat="identity")+ xlab("Dates")+ ylab("Imputed Steps")+ labs(title= "Total numbers of Steps per day (missing data imputed)")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
 
 Calculate and report the mean and median total number of steps taken per day.
 
@@ -402,7 +459,7 @@ for (type in c("weekend", "weekday")) {
 }
 ```
 
-![plot of chunk unnamed-chunk-16](figure/unnamed-chunk-16-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-16-1.png) 
 
 
 
